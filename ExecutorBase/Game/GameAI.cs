@@ -108,6 +108,7 @@ namespace WindBot.Game
             m_position.Clear();
             m_selector_pointer = -1;
             m_materialSelector = null;
+            m_materialSelectorHint = 0;
             m_option = -1;
             m_yesno = -1;
            
@@ -279,7 +280,16 @@ namespace WindBot.Game
             else
             {
                 // Update the next selector.
-                selector = GetSelectedCards();
+                if (m_materialSelector != null && hint == m_materialSelectorHint)
+                {
+                    //Logger.DebugWriteLine("m_materialSelector hint match");
+                    selector = m_materialSelector;
+                }
+                else
+                {
+                    // Update the next selector.
+                    selector = GetSelectedCards();
+                }
             }
 
             // If we selected a card, use this card.
@@ -475,12 +485,12 @@ namespace WindBot.Game
         /// <returns>Index of the selected option.</returns>
         public int OnSelectOption(IList<long> options)
         {
-            if (m_option != -1 && m_option < options.Count)
-                return m_option;
-
             int result = Executor.OnSelectOption(options);
             if (result != -1)
                 return result;
+
+            if (m_option != -1 && m_option < options.Count)
+                return m_option;
 
             return 0; // Always select the first option.
         }
@@ -762,6 +772,7 @@ namespace WindBot.Game
 
         
         private CardSelector m_materialSelector;
+        private int m_materialSelectorHint;
         private int m_place;
         private int m_option;
         private int m_number;
@@ -929,34 +940,40 @@ namespace WindBot.Game
             m_selector.Insert(m_selector_pointer, new CardSelector(loc));
         }
 
-        public void SelectMaterials(ClientCard card)
+        public void SelectMaterials(ClientCard card, int hint = 0)
         {
             m_materialSelector = new CardSelector(card);
+            m_materialSelectorHint = hint;
         }
 
-        public void SelectMaterials(IList<ClientCard> cards)
+        public void SelectMaterials(IList<ClientCard> cards, int hint = 0)
         {
             m_materialSelector = new CardSelector(cards);
+            m_materialSelectorHint = hint;
         }
 
-        public void SelectMaterials(int cardId)
+        public void SelectMaterials(int cardId, int hint = 0)
         {
             m_materialSelector = new CardSelector(cardId);
+            m_materialSelectorHint = hint;
         }
 
-        public void SelectMaterials(IList<int> ids)
+        public void SelectMaterials(IList<int> ids, int hint = 0)
         {
             m_materialSelector = new CardSelector(ids);
+            m_materialSelectorHint = hint;
         }
 
-        public void SelectMaterials(CardLocation loc)
+        public void SelectMaterials(CardLocation loc, int hint = 0)
         {
             m_materialSelector = new CardSelector(loc);
+            m_materialSelectorHint = hint;
         }
 
         public void CleanSelectMaterials()
         {
             m_materialSelector = null;
+            m_materialSelectorHint = 0;
         }
 
         public bool HaveSelectedCards()
