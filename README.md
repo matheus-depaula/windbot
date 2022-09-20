@@ -26,6 +26,7 @@ Written in C# targeting .NET Framework 4. Use Visual Studio 2015 or newer.
 * Horus
 * Lightsworn Shaddoll Dino
 * Mathmech
+* Monarch
 * Normal Monster Mash
 * Normal Monster Mash II
 * Orcust

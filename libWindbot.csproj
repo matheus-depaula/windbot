@@ -71,6 +71,7 @@
     <Compile Include="Game\AI\Decks\Level8Executor.cs" />
     <Compile Include="Game\AI\Decks\LightswornExecutor.cs" />
     <Compile Include="Game\AI\Decks\LightswornShaddoldinosourExecutor.cs" />
+    <Compile Include="Game\AI\Decks\MonarchExecutor.cs" />
     <Compile Include="Game\AI\Decks\MathMechExecutor.cs" />
     <Compile Include="Game\AI\Decks\MokeyMokeyExecutor.cs" />
     <Compile Include="Game\AI\Decks\MokeyMokeyKingExecutor.cs" />

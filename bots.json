@@ -60,6 +60,12 @@
         "masterRules": [ 5 ]
     },
     {
+        "name": "Domain of the Monarchs",
+        "deck": "Monarch",
+        "difficulty": 3,
+        "masterRules": [ 3, 4, 5 ]
+    },
+    {
         "name": "Dragun of Red-Eyes",
         "deck": "Dragun",
         "difficulty": 3,
